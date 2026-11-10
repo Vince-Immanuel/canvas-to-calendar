@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Canvas to Calendar",
+  "version": "1.0.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjIHwAn9FvuPbpNQC12s73w4gmMf3kizYmnx2GqEdSkqLjZwA2pmpofgCfzu7k7j84kZgthE3V7wHBCsJnjERYI6kS0vd9uF0eix7y4xj3YEwaXa3K60l43tEia9Bctal6Tj2NjjpZrZkzAzZlyzR3I7ZXFm02Z/bwrUO+ABr3UDdzOnuRJj1p8ZSM1OKNb3hxox9vTbnIZfUH1KIsYq79GV+SKxYQ5xnznySQMOsUO6UGnTB2jbjNluOrb870auOVrwIrnHSWMmrLZVn5vwn0lTWIYZ476dw8f689VxEHkFyUfMBPzB0JeGS+iQ/RXCtDfV88wF+amCBX7Sqa/FfAwIDAQAB",
+  "description": "Send your Canvas assignments to Google Calendar, or download them as an .ics file.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Canvas to Calendar",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "options_page": "options.html",
+  "permissions": ["activeTab", "scripting", "storage", "identity"],
+  "host_permissions": ["https://www.googleapis.com/*"]
+}

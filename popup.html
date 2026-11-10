@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Canvas to Calendar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="popup">
+  <header>
+    <img src="icons/icon48.png" alt="">
+    <div class="titles">
+      <h1>Canvas to Calendar</h1>
+      <div class="sub" id="host"></div>
+    </div>
+    <button class="icon-btn" id="refresh" title="Reload assignments" aria-label="Reload assignments">↻</button>
+    <button class="icon-btn" id="settings" title="Settings" aria-label="Settings">⚙</button>
+  </header>
+
+  <div id="setup" class="notice" hidden>
+    <div><b>Want one-click sync?</b> Connect Google Calendar once (about 5 minutes).
+      Until then, use <b>.ics</b> or the <b>+</b> next to each assignment.</div>
+    <button id="setupBtn">Set up</button>
+  </div>
+
+  <div id="status" class="status" role="status" aria-live="polite">Loading your assignments…</div>
+
+  <div id="empty" class="empty-state" hidden>
+    <div class="big">📚</div>
+    <p id="emptyText"></p>
+    <button class="primary" id="openCanvas" hidden></button>
+  </div>
+
+  <div id="main" hidden>
+    <div class="filters">
+      <select id="course" aria-label="Filter by course"></select>
+      <label class="switch"><input type="checkbox" id="hideDone"> Hide submitted</label>
+    </div>
+    <div class="toolbar">
+      <label><input type="checkbox" id="all"> Select all</label>
+      <span id="count"></span>
+    </div>
+    <div class="list" id="list"></div>
+    <div class="actions">
+      <button class="primary" id="sync">Add to Google Calendar</button>
+      <button id="ics" title="Download a calendar file you can import into Google, Outlook or Apple Calendar">⤓ .ics</button>
+    </div>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

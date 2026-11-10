@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Canvas to Calendar Settings</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="options">
+    <div class="brand">
+      <img src="icons/icon48.png" alt="">
+      <div>
+        <h1>Canvas to Calendar</h1>
+        <p>Put your Canvas assignments on your calendar.</p>
+      </div>
+    </div>
+
+    <section id="welcome" class="card welcome" hidden>
+      <h2>👋 You're all set to start</h2>
+      <ol>
+        <li>Open your school's Canvas site and log in.</li>
+        <li>Click the <b>Canvas to Calendar</b> icon in your toolbar. Pin it from the puzzle-piece menu so it's easy to find.</li>
+        <li>Tick the assignments you want, then click <b>.ics</b> or the <b>+</b> next to an assignment. Both work right away.</li>
+      </ol>
+      <p>For one-click syncing that also keeps due dates up to date, connect Google Calendar below.</p>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Google Calendar connection</h2>
+        <span id="connBadge" class="badge"></span>
+      </div>
+      <p>Only the <b>Add to Google Calendar</b> button needs this. Google requires every app
+        that writes to your calendar to have its own login key ("Client ID"), which you create
+        for free in Google Cloud.</p>
+
+      <details id="guide">
+        <summary>Step-by-step setup (about 5 minutes)</summary>
+        <ol>
+          <li>Open <a href="https://console.cloud.google.com/projectcreate" target="_blank">Google Cloud Console</a> and create a project (any name).</li>
+          <li>Turn on the <a href="https://console.cloud.google.com/apis/library/calendar-json.googleapis.com" target="_blank">Google Calendar API</a> for that project.</li>
+          <li>Open <a href="https://console.cloud.google.com/auth/overview" target="_blank">Google Auth Platform</a> and click <b>Get started</b>. Enter any app name and your email, and choose <b>External</b>.</li>
+          <li>Under <a href="https://console.cloud.google.com/auth/audience" target="_blank">Audience</a> → <b>Test users</b>, add <b>every Gmail address you'll sign in with</b>.</li>
+          <li>Under <a href="https://console.cloud.google.com/auth/clients/create" target="_blank">Clients</a> → <b>Create client</b>, choose <b>Web application</b>. Under <b>Authorized redirect URIs</b>, add this exact address:
+            <div class="copyrow">
+              <code id="redirect"></code>
+              <button id="copy">Copy</button>
+            </div>
+          </li>
+          <li>Click <b>Create</b> and paste the <b>Client ID</b> below. Don't paste the client secret.</li>
+        </ol>
+        <p class="hint">Changes in Google Cloud can take a few minutes to start working. When you first sign in, Google warns
+          that the app "isn't verified". That's expected for an app you set up yourself, so click <b>Continue</b>.</p>
+      </details>
+
+      <div class="field">
+        <label for="clientId">Google OAuth Client ID</label>
+        <input type="text" id="clientId" placeholder="1234567890-abc….apps.googleusercontent.com" spellcheck="false" autocomplete="off">
+        <small id="clientHint"></small>
+      </div>
+      <button id="signout">Sign out of Google</button>
+    </section>
+
+    <section class="card">
+      <h2>Calendar events</h2>
+      <div class="field">
+        <label for="calendarName">Calendar name</label>
+        <input type="text" id="calendarName">
+        <small>Created for you if it doesn't exist yet. Type <code>primary</code> to use your main calendar.</small>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="eventMinutes">Event length (minutes)</label>
+          <input type="number" id="eventMinutes" min="0" max="1440">
+          <small>The event ends at the due time.</small>
+        </div>
+        <div class="field">
+          <label for="reminders">Reminders (minutes before)</label>
+          <input type="text" id="reminders">
+          <small>For example, 1440, 120 means 1 day and 2 hours before.</small>
+        </div>
+      </div>
+      <div class="field">
+        <label for="courseLabel">Course label in event titles</label>
+        <select id="courseLabel">
+          <option value="code">Course code (e.g. BIO101)</option>
+          <option value="name">Course name or your Canvas nickname</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Which assignments</h2>
+      <div class="row2">
+        <div class="field">
+          <label for="daysBack">Include past (days)</label>
+          <input type="number" id="daysBack" min="0" max="365">
+        </div>
+        <div class="field">
+          <label for="daysAhead">Look ahead (days)</label>
+          <input type="number" id="daysAhead" min="1" max="365">
+        </div>
+      </div>
+      <label class="check"><input type="checkbox" id="skipSubmitted"> Hide assignments I've already submitted</label>
+    </section>
+
+    <p class="footer">Settings save automatically. <span id="saved" class="saved" hidden>Saved ✓</span></p>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

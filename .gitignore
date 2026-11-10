@@ -1,0 +1,9 @@
+# Your personal Google Client ID. Copy config.example.json to config.json to use it.
+config.json
+
+# Private signing keys, if you ever pack the extension yourself
+*.pem
+*.crx
+
+.DS_Store
+Thumbs.db
